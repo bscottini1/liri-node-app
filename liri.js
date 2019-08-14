@@ -4,7 +4,10 @@ const Spotify = require("node-spotify-api");
 const dotenv = require("dotenv");
 const moment = require("moment");
 
-const movieName = process.argv.slice(3).join("+");
+let movieName = process.argv.slice(3).join("+");
+// if (movieName == "") {
+//         movieName == "mr. nodbody"}
+
 const queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
 axios.get(queryUrl).then(
@@ -17,5 +20,10 @@ axios.get(queryUrl).then(
         console.log(response.data.Plot);
         console.log(response.data.Actors);
     });
+    
+    
+    
+
+
 
     

@@ -12,7 +12,7 @@ let userInput = process.argv.slice(3).join("+");
 switch (process.argv[2]) {
     case "movie-this":
         movieThis(userInput)
-        fs.appendFile("log.txt", userInput, function(err, data){
+        fs.appendFile("log.txt", userInput + " ", function(err, data){
             if(err){
                 return console.log(err);
             }
@@ -21,7 +21,7 @@ switch (process.argv[2]) {
 
     case "spotify-this-song":
         spotifyThis(userInput)
-        fs.appendFile("log.txt", userInput + ", ", function(err, data){
+        fs.appendFile("log.txt", userInput + " ", function(err, data){
             if(err){
                 return console.log(err);
             }
@@ -52,18 +52,21 @@ var spotify = new Spotify({
 });
 
 function spotifyThis(){
-    spotify.search({ type: "track", query: userInput || "The+Sign"})
+    spotify.search({ type: "track", query: userInput || "The Sign (US Album)"})
   .then(function(response) {
-    console.log(response.tracks.items[1]);
-    // const items = response.tracks.items[0];
-    //   console.log("Album Name: " + items.album.name);
-    //   console.log("Song Name: " + items.name); 
-    //   console.log("Artist Name: " + items.album.artists[0].name);
-    //   console.log("Spotify Link: " + items.album.href);
+    // console.log(response.tracks.items[0]);
+    const items = response.tracks.items[0];
+      console.log("Album Name: " + items.album.name);
+      console.log("Song Name: " + items.name); 
+      console.log("Artist Name: " + items.album.artists[0].name);
+      console.log("Spotify Link: " + items.album.href);
   })
 }
 
-
+fs.readFile("random.txt", function(err, data) {
+  if (err) throw err;
+  console.log(data);
+});
 
 
 

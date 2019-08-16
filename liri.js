@@ -62,12 +62,3 @@ function spotifyThis(){
       console.log("Spotify Link: " + items.album.href);
   })
 }
-
-fs.readFile("random.txt", function(err, data) {
-  if (err) throw err;
-  console.log(data);
-});
-
-
-
-
